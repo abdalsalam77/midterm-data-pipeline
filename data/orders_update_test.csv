@@ -1,0 +1,2 @@
+order_id,order_date,status,customer_id,customer_name,customer_phone,customer_email,city,district,delivery_type,delivery_cost,payment_method,payment_status,payment_amount,currency,total_amount,items_json
+طلب-100001,2025-01-12T00:13:00,قيد الانتظار,عميل-1,علي حسين,714876334,user392083@example.com,صنعاء,القاهرة,عادي,2000.0,محفظة إلكترونية,بانتظار الدفع,546500.0,YER,546500.0,"[{""sku"":""SKU-1010"",""name"":""هاتف سامسونج A54"",""qty"":3,""unit_price"":181500.0,""total"":544500.0}]"

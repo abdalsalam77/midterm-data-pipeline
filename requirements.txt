@@ -1,0 +1,4 @@
+pymongo
+pyspark
+pytest
+python-dotenv

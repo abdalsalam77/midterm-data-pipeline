@@ -1,0 +1,1525 @@
+{
+  "runs": [
+    {
+      "recorded_at": "2026-08-24T12:39:21.220464+00:00",
+      "run_id": "test-run",
+      "file_name": "test.csv",
+      "file_size_mb": 10.5,
+      "engine_used": "python_batch",
+      "rows_read": 100,
+      "raw_loaded": 100,
+      "valid_count": 70,
+      "corrected_count": 20,
+      "quarantine_count": 10,
+      "elapsed_seconds": 2.5,
+      "throughput": 40.0,
+      "batch_size": 50,
+      "batch_count": 2,
+      "partitions": null,
+      "error_case_counts": {
+        "INVALID_EMAIL": 5,
+        "MISSING_ORDER_ID": 3
+      },
+      "inserted_count": 80,
+      "updated_count": 10,
+      "unchanged_count": 0,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100,
+        "run_valid_count": 70,
+        "run_corrected_count": 20,
+        "run_quarantine_count": 10,
+        "final_count": 100,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-24T12:56:18.222209+00:00",
+      "run_id": "3e4ade72-ff1a-46bf-b13c-f783bb8d3ab2",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 24305,
+      "corrected_count": 3041,
+      "quarantine_count": 72654,
+      "elapsed_seconds": 22.698332,
+      "throughput": 4405.61,
+      "batch_size": 5000,
+      "batch_count": 20,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_STATUS": 47804,
+        "MISSING_CUSTOMER_ID": 1411,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 31631,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "INVALID_CURRENCY": 713,
+        "INVALID_PAYMENT_STATUS": 795,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "EMPTY_ITEMS": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 27346,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 24305,
+        "run_corrected_count": 3041,
+        "run_quarantine_count": 72654,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-24T12:59:41.946201+00:00",
+      "run_id": "6f6f9f0d-2918-4745-a217-86408e0fbd3b",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 24305,
+      "corrected_count": 3041,
+      "quarantine_count": 72654,
+      "elapsed_seconds": 23.573284,
+      "throughput": 4242.0904,
+      "batch_size": 5000,
+      "batch_count": 20,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_STATUS": 47804,
+        "MISSING_CUSTOMER_ID": 1411,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 31631,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "INVALID_CURRENCY": 713,
+        "INVALID_PAYMENT_STATUS": 795,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "EMPTY_ITEMS": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 27346,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 24305,
+        "run_corrected_count": 3041,
+        "run_quarantine_count": 72654,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-24T14:10:25.228559+00:00",
+      "run_id": "644bb775-9862-48d2-9e98-5b98f68d2e77",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 24305,
+      "corrected_count": 3041,
+      "quarantine_count": 72654,
+      "elapsed_seconds": 24.722593,
+      "throughput": 4044.8831,
+      "batch_size": 5000,
+      "batch_count": 20,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_STATUS": 47804,
+        "MISSING_CUSTOMER_ID": 1411,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 31631,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "INVALID_CURRENCY": 713,
+        "INVALID_PAYMENT_STATUS": 795,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "EMPTY_ITEMS": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 27346,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 24305,
+        "run_corrected_count": 3041,
+        "run_quarantine_count": 72654,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-24T15:52:27.861882+00:00",
+      "run_id": "5e72a34d-485c-487f-8060-41472a73d887",
+      "file_name": "orders_update_test.csv",
+      "file_size_mb": 0.0005,
+      "engine_used": "python_batch",
+      "rows_read": 1,
+      "raw_loaded": 1,
+      "valid_count": 1,
+      "corrected_count": 0,
+      "quarantine_count": 0,
+      "elapsed_seconds": 0.054166,
+      "throughput": 18.4617,
+      "batch_size": 5000,
+      "batch_count": 1,
+      "partitions": null,
+      "error_case_counts": {},
+      "inserted_count": 0,
+      "updated_count": 1,
+      "unchanged_count": 0,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 1,
+        "run_valid_count": 1,
+        "run_corrected_count": 0,
+        "run_quarantine_count": 0,
+        "final_count": 1,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-24T16:06:44.585018+00:00",
+      "run_id": "6a0f78e8-947f-454f-99e9-161ecdbe01c6",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 24305,
+      "corrected_count": 2243,
+      "quarantine_count": 73452,
+      "elapsed_seconds": 21.773108,
+      "throughput": 4592.8215,
+      "batch_size": 5000,
+      "batch_count": 20,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_STATUS": 48887,
+        "INVALID_TOTAL_AMOUNT": 2235,
+        "UNKNOWN_TOTAL_AMOUNT": 2235,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 32364,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_CURRENCY": 713,
+        "INVALID_PAYMENT_STATUS": 795,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 26548,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 24305,
+        "run_corrected_count": 2243,
+        "run_quarantine_count": 73452,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-24T20:29:00.757454+00:00",
+      "run_id": "d2e0fef2-ea18-45ec-ac79-9d01a86d81f2",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 4423,
+      "quarantine_count": 46646,
+      "elapsed_seconds": 22.664185,
+      "throughput": 4412.2477,
+      "batch_size": 5000,
+      "batch_count": 20,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_TOTAL_AMOUNT": 2235,
+        "UNKNOWN_TOTAL_AMOUNT": 2235,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 32364,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 26806,
+      "updated_count": 0,
+      "unchanged_count": 26548,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 4423,
+        "run_quarantine_count": 46646,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-24T20:40:18.415843+00:00",
+      "run_id": "fa9ffee2-cac9-4174-bcd0-c1d2ae4f22ce",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 31105,
+      "quarantine_count": 19964,
+      "elapsed_seconds": 28.548333,
+      "throughput": 3502.8315,
+      "batch_size": 5000,
+      "batch_count": 20,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_TOTAL_AMOUNT": 2235,
+        "UNKNOWN_TOTAL_AMOUNT": 2235,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 1923,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 26682,
+      "updated_count": 0,
+      "unchanged_count": 53354,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 31105,
+        "run_quarantine_count": 19964,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-24T21:03:36.405314+00:00",
+      "run_id": "87b842d2-4d53-48a3-965f-b530afa83733",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 31105,
+      "quarantine_count": 19964,
+      "elapsed_seconds": 26.035585,
+      "throughput": 3840.897,
+      "batch_size": 5000,
+      "batch_count": 20,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_TOTAL_AMOUNT": 2235,
+        "UNKNOWN_TOTAL_AMOUNT": 2235,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 1923,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 80036,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 31105,
+        "run_quarantine_count": 19964,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-24T21:09:29.099040+00:00",
+      "run_id": "13300616-0cfc-425e-9faf-45b8a0759eba",
+      "file_name": "orders_update_test.csv",
+      "file_size_mb": 0.0005,
+      "engine_used": "python_batch",
+      "rows_read": 1,
+      "raw_loaded": 1,
+      "valid_count": 1,
+      "corrected_count": 0,
+      "quarantine_count": 0,
+      "elapsed_seconds": 0.019609,
+      "throughput": 50.9973,
+      "batch_size": 5000,
+      "batch_count": 1,
+      "partitions": null,
+      "error_case_counts": {},
+      "inserted_count": 0,
+      "updated_count": 1,
+      "unchanged_count": 0,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 1,
+        "run_valid_count": 1,
+        "run_corrected_count": 0,
+        "run_quarantine_count": 0,
+        "final_count": 1,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-25T19:34:43.711123+00:00",
+      "run_id": "d3cb39a9-6f00-4b76-99f2-1e2d4c8e67fe",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 31105,
+      "quarantine_count": 19964,
+      "elapsed_seconds": 32.134151,
+      "throughput": 3111.954,
+      "batch_size": 20000,
+      "batch_count": 5,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_TOTAL_AMOUNT": 2235,
+        "UNKNOWN_TOTAL_AMOUNT": 2235,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 1923,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 80036,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 31105,
+        "run_quarantine_count": 19964,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-25T19:35:36.870037+00:00",
+      "run_id": "5d3280bb-c7f1-4021-8727-b5d8f001757a",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 31105,
+      "quarantine_count": 19964,
+      "elapsed_seconds": 27.123139,
+      "throughput": 3686.8889,
+      "batch_size": 10000,
+      "batch_count": 10,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_TOTAL_AMOUNT": 2235,
+        "UNKNOWN_TOTAL_AMOUNT": 2235,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 1923,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 80036,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 31105,
+        "run_quarantine_count": 19964,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-25T19:36:22.233366+00:00",
+      "run_id": "320b2e8b-7263-4b08-a372-353a53540aa3",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 31105,
+      "quarantine_count": 19964,
+      "elapsed_seconds": 29.068481,
+      "throughput": 3440.1522,
+      "batch_size": 5000,
+      "batch_count": 20,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_TOTAL_AMOUNT": 2235,
+        "UNKNOWN_TOTAL_AMOUNT": 2235,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 1923,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 80036,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 31105,
+        "run_quarantine_count": 19964,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-25T19:37:03.313620+00:00",
+      "run_id": "82c0cf9e-e611-4bf4-ae48-28977060aec5",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 31105,
+      "quarantine_count": 19964,
+      "elapsed_seconds": 26.222099,
+      "throughput": 3813.5773,
+      "batch_size": 7500,
+      "batch_count": 14,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "INVALID_TOTAL_AMOUNT": 2235,
+        "UNKNOWN_TOTAL_AMOUNT": 2235,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_PAYMENT_METHOD": 1923,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 80036,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 31105,
+        "run_quarantine_count": 19964,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-25T20:47:42.573171+00:00",
+      "run_id": "abe7d831-22db-4ab6-89c6-c489f738fe3a",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 33340,
+      "quarantine_count": 17729,
+      "elapsed_seconds": 28.039243,
+      "throughput": 3566.4301,
+      "batch_size": 20000,
+      "batch_count": 5,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_PAYMENT_METHOD": 1202,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 1437,
+      "updated_count": 0,
+      "unchanged_count": 80834,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 33340,
+        "run_quarantine_count": 17729,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-25T20:53:26.138598+00:00",
+      "run_id": "6c6901ba-eae2-42d8-9629-c3acdd557930",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 33340,
+      "quarantine_count": 17729,
+      "elapsed_seconds": 27.841365,
+      "throughput": 3591.7779,
+      "batch_size": 20000,
+      "batch_count": 5,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_PAYMENT_METHOD": 1202,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 82271,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 33340,
+        "run_quarantine_count": 17729,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-25T23:30:10.206256+00:00",
+      "run_id": "eec98670-56a7-42d6-b2a5-aa5da09f19e2",
+      "file_name": "orders_huge_mixed_quality.csv",
+      "file_size_mb": 12650.3196,
+      "engine_used": "pyspark",
+      "rows_read": 30000000,
+      "raw_loaded": 30000000,
+      "valid_count": 14810722,
+      "corrected_count": 10079879,
+      "quarantine_count": 5109399,
+      "elapsed_seconds": 4157.43213,
+      "throughput": 7215.9927,
+      "batch_size": 10000,
+      "batch_count": null,
+      "partitions": 99,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 210021,
+        "CORRUPTED_ITEMS_JSON": 419906,
+        "INVALID_DATE_FORMAT": 878675,
+        "UNKNOWN_PRICE:item[0]": 543366,
+        "INVALID_PAYMENT_AMOUNT": 668428,
+        "INVALID_DELIVERY_COST": 501426,
+        "MISSING_CUSTOMER_ID": 210042,
+        "INVALID_PAYMENT_METHOD": 349801,
+        "INVALID_CURRENCY": 210190,
+        "AMBIGUOUS_NEGATIVE_VALUE": 209114,
+        "MISSING_ORDER_ID": 209392,
+        "INVALID_PHONE": 210042,
+        "MISSING_ITEM_FIELD": 209392,
+        "INVALID_STATUS": 210194,
+        "EMPTY_ITEMS": 209934,
+        "TOTAL_AMOUNT_MISMATCH": 209934,
+        "INVALID_EMAIL": 209277,
+        "INVALID_ITEM_TOTAL:item[0]": 210018,
+        "INVALID_ITEM_TOTAL": 210018
+      },
+      "inserted_count": 693105,
+      "updated_count": 202367,
+      "unchanged_count": 23995129,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 30000000,
+        "run_valid_count": 14810722,
+        "run_corrected_count": 10079879,
+        "run_quarantine_count": 5109399,
+        "final_count": 30000000,
+        "difference": 0
+      },
+      "partition_metrics": [
+        {
+          "partition_id": 0,
+          "rows_read": 305974,
+          "elapsed_seconds": 527.5895465,
+          "throughput": 579.9470479083876
+        },
+        {
+          "partition_id": 1,
+          "rows_read": 305833,
+          "elapsed_seconds": 447.1666124000001,
+          "throughput": 683.9352302233733
+        },
+        {
+          "partition_id": 2,
+          "rows_read": 305801,
+          "elapsed_seconds": 510.8345731999999,
+          "throughput": 598.6301946721879
+        },
+        {
+          "partition_id": 3,
+          "rows_read": 304735,
+          "elapsed_seconds": 516.7893106,
+          "throughput": 589.6697043640438
+        },
+        {
+          "partition_id": 4,
+          "rows_read": 304507,
+          "elapsed_seconds": 502.8037121,
+          "throughput": 605.6180427312323
+        },
+        {
+          "partition_id": 5,
+          "rows_read": 304390,
+          "elapsed_seconds": 517.0475243,
+          "throughput": 588.7079730477302
+        },
+        {
+          "partition_id": 6,
+          "rows_read": 304271,
+          "elapsed_seconds": 447.91733650000003,
+          "throughput": 679.3016818182476
+        },
+        {
+          "partition_id": 7,
+          "rows_read": 304488,
+          "elapsed_seconds": 513.1345907999998,
+          "throughput": 593.3881781878894
+        },
+        {
+          "partition_id": 8,
+          "rows_read": 304430,
+          "elapsed_seconds": 441.8104536000001,
+          "throughput": 689.0511474307948
+        },
+        {
+          "partition_id": 9,
+          "rows_read": 304582,
+          "elapsed_seconds": 513.4165672,
+          "throughput": 593.2453673263545
+        },
+        {
+          "partition_id": 10,
+          "rows_read": 304575,
+          "elapsed_seconds": 441.9764057,
+          "throughput": 689.1204961894191
+        },
+        {
+          "partition_id": 11,
+          "rows_read": 304256,
+          "elapsed_seconds": 499.7417611999999,
+          "throughput": 608.8264452212445
+        },
+        {
+          "partition_id": 12,
+          "rows_read": 304492,
+          "elapsed_seconds": 433.0554347,
+          "throughput": 703.1247632556267
+        },
+        {
+          "partition_id": 13,
+          "rows_read": 304272,
+          "elapsed_seconds": 487.0303039999999,
+          "throughput": 624.7496254360387
+        },
+        {
+          "partition_id": 14,
+          "rows_read": 304159,
+          "elapsed_seconds": 429.8033877999999,
+          "throughput": 707.6700850518519
+        },
+        {
+          "partition_id": 15,
+          "rows_read": 304402,
+          "elapsed_seconds": 488.59742689999985,
+          "throughput": 623.0118769379055
+        },
+        {
+          "partition_id": 16,
+          "rows_read": 304571,
+          "elapsed_seconds": 424.6138994999999,
+          "throughput": 717.2892841205734
+        },
+        {
+          "partition_id": 17,
+          "rows_read": 304331,
+          "elapsed_seconds": 481.87865510000006,
+          "throughput": 631.55111100915
+        },
+        {
+          "partition_id": 18,
+          "rows_read": 304161,
+          "elapsed_seconds": 424.5657430000001,
+          "throughput": 716.4049502693861
+        },
+        {
+          "partition_id": 19,
+          "rows_read": 304505,
+          "elapsed_seconds": 475.654411,
+          "throughput": 640.1811755720269
+        },
+        {
+          "partition_id": 20,
+          "rows_read": 304531,
+          "elapsed_seconds": 425.55559900000003,
+          "throughput": 715.6080209392334
+        },
+        {
+          "partition_id": 21,
+          "rows_read": 304742,
+          "elapsed_seconds": 480.4931844,
+          "throughput": 634.2275185037984
+        },
+        {
+          "partition_id": 22,
+          "rows_read": 304519,
+          "elapsed_seconds": 423.7386474,
+          "throughput": 718.6481617111991
+        },
+        {
+          "partition_id": 23,
+          "rows_read": 304450,
+          "elapsed_seconds": 454.99960609999994,
+          "throughput": 669.1214583888847
+        },
+        {
+          "partition_id": 24,
+          "rows_read": 304594,
+          "elapsed_seconds": 466.07603110000014,
+          "throughput": 653.5285654598424
+        },
+        {
+          "partition_id": 25,
+          "rows_read": 304393,
+          "elapsed_seconds": 449.0592588999998,
+          "throughput": 677.8459500993937
+        },
+        {
+          "partition_id": 26,
+          "rows_read": 304533,
+          "elapsed_seconds": 461.6169129,
+          "throughput": 659.7093639547192
+        },
+        {
+          "partition_id": 27,
+          "rows_read": 304491,
+          "elapsed_seconds": 444.48129189999986,
+          "throughput": 685.0479548833405
+        },
+        {
+          "partition_id": 28,
+          "rows_read": 304342,
+          "elapsed_seconds": 457.8841166999998,
+          "throughput": 664.6703585033966
+        },
+        {
+          "partition_id": 29,
+          "rows_read": 304176,
+          "elapsed_seconds": 442.9297028000001,
+          "throughput": 686.736513891793
+        },
+        {
+          "partition_id": 30,
+          "rows_read": 304451,
+          "elapsed_seconds": 459.1937396999999,
+          "throughput": 663.0120876623964
+        },
+        {
+          "partition_id": 31,
+          "rows_read": 304189,
+          "elapsed_seconds": 421.27327879999984,
+          "throughput": 722.070483241863
+        },
+        {
+          "partition_id": 32,
+          "rows_read": 303923,
+          "elapsed_seconds": 460.4583905999998,
+          "throughput": 660.0444387688831
+        },
+        {
+          "partition_id": 33,
+          "rows_read": 303070,
+          "elapsed_seconds": 417.1134991000001,
+          "throughput": 726.5888077320197
+        },
+        {
+          "partition_id": 34,
+          "rows_read": 303098,
+          "elapsed_seconds": 458.6260229000002,
+          "throughput": 660.8826906145449
+        },
+        {
+          "partition_id": 35,
+          "rows_read": 303142,
+          "elapsed_seconds": 420.39461519999986,
+          "throughput": 721.0891601353701
+        },
+        {
+          "partition_id": 36,
+          "rows_read": 303126,
+          "elapsed_seconds": 475.9219699,
+          "throughput": 636.9237378633568
+        },
+        {
+          "partition_id": 37,
+          "rows_read": 303064,
+          "elapsed_seconds": 457.3375691000001,
+          "throughput": 662.6702472670311
+        },
+        {
+          "partition_id": 38,
+          "rows_read": 302893,
+          "elapsed_seconds": 480.9773703000001,
+          "throughput": 629.7448044407505
+        },
+        {
+          "partition_id": 39,
+          "rows_read": 303217,
+          "elapsed_seconds": 454.9395734,
+          "throughput": 666.4995039536827
+        },
+        {
+          "partition_id": 40,
+          "rows_read": 302924,
+          "elapsed_seconds": 534.0325103999999,
+          "throughput": 567.23887422716
+        },
+        {
+          "partition_id": 41,
+          "rows_read": 303008,
+          "elapsed_seconds": 465.8461502,
+          "throughput": 650.4465044305093
+        },
+        {
+          "partition_id": 42,
+          "rows_read": 303171,
+          "elapsed_seconds": 538.2286909,
+          "throughput": 563.275435007101
+        },
+        {
+          "partition_id": 43,
+          "rows_read": 303125,
+          "elapsed_seconds": 469.4785933000003,
+          "throughput": 645.6630916210931
+        },
+        {
+          "partition_id": 44,
+          "rows_read": 302844,
+          "elapsed_seconds": 540.7991213999999,
+          "throughput": 559.9935133326569
+        },
+        {
+          "partition_id": 45,
+          "rows_read": 302988,
+          "elapsed_seconds": 464.2937702000004,
+          "throughput": 652.578215446406
+        },
+        {
+          "partition_id": 46,
+          "rows_read": 302922,
+          "elapsed_seconds": 496.0929454000002,
+          "throughput": 610.615415536203
+        },
+        {
+          "partition_id": 47,
+          "rows_read": 302950,
+          "elapsed_seconds": 468.8355929999998,
+          "throughput": 646.175342749628
+        },
+        {
+          "partition_id": 48,
+          "rows_read": 303014,
+          "elapsed_seconds": 479.75011459999996,
+          "throughput": 631.6079783589905
+        },
+        {
+          "partition_id": 49,
+          "rows_read": 302986,
+          "elapsed_seconds": 544.8503817999999,
+          "throughput": 556.0902774795487
+        },
+        {
+          "partition_id": 50,
+          "rows_read": 303043,
+          "elapsed_seconds": 521.9590822,
+          "throughput": 580.5876558804325
+        },
+        {
+          "partition_id": 51,
+          "rows_read": 303126,
+          "elapsed_seconds": 538.8450372000002,
+          "throughput": 562.5476325719418
+        },
+        {
+          "partition_id": 52,
+          "rows_read": 302953,
+          "elapsed_seconds": 475.7173665999999,
+          "throughput": 636.8340137868746
+        },
+        {
+          "partition_id": 53,
+          "rows_read": 303009,
+          "elapsed_seconds": 536.9626487999999,
+          "throughput": 564.3018200188826
+        },
+        {
+          "partition_id": 54,
+          "rows_read": 303033,
+          "elapsed_seconds": 475.492064,
+          "throughput": 637.3040118709531
+        },
+        {
+          "partition_id": 55,
+          "rows_read": 303081,
+          "elapsed_seconds": 527.4968117000003,
+          "throughput": 574.564610207292
+        },
+        {
+          "partition_id": 56,
+          "rows_read": 303182,
+          "elapsed_seconds": 505.60978079999995,
+          "throughput": 599.6363431108689
+        },
+        {
+          "partition_id": 57,
+          "rows_read": 303064,
+          "elapsed_seconds": 527.9519455999998,
+          "throughput": 574.0370928183205
+        },
+        {
+          "partition_id": 58,
+          "rows_read": 302956,
+          "elapsed_seconds": 468.6135712999999,
+          "throughput": 646.4942941356937
+        },
+        {
+          "partition_id": 59,
+          "rows_read": 303092,
+          "elapsed_seconds": 530.9483332,
+          "throughput": 570.8502711992317
+        },
+        {
+          "partition_id": 60,
+          "rows_read": 303118,
+          "elapsed_seconds": 483.5998847000001,
+          "throughput": 626.7950212354547
+        },
+        {
+          "partition_id": 61,
+          "rows_read": 303067,
+          "elapsed_seconds": 492.8199020000002,
+          "throughput": 614.9650181944152
+        },
+        {
+          "partition_id": 62,
+          "rows_read": 302983,
+          "elapsed_seconds": 476.64839570000004,
+          "throughput": 635.6530363540674
+        },
+        {
+          "partition_id": 63,
+          "rows_read": 302999,
+          "elapsed_seconds": 507.9118454999998,
+          "throughput": 596.5582466416412
+        },
+        {
+          "partition_id": 64,
+          "rows_read": 303189,
+          "elapsed_seconds": 481.80548180000005,
+          "throughput": 629.2767754889417
+        },
+        {
+          "partition_id": 65,
+          "rows_read": 302991,
+          "elapsed_seconds": 494.0724543000001,
+          "throughput": 613.2521604129428
+        },
+        {
+          "partition_id": 66,
+          "rows_read": 303237,
+          "elapsed_seconds": 478.32424869999977,
+          "throughput": 633.9569880141854
+        },
+        {
+          "partition_id": 67,
+          "rows_read": 303100,
+          "elapsed_seconds": 496.96506580000005,
+          "throughput": 609.9020250288183
+        },
+        {
+          "partition_id": 68,
+          "rows_read": 303198,
+          "elapsed_seconds": 476.7242126000001,
+          "throughput": 636.0029383579918
+        },
+        {
+          "partition_id": 69,
+          "rows_read": 302993,
+          "elapsed_seconds": 493.79775440000003,
+          "throughput": 613.597363090803
+        },
+        {
+          "partition_id": 70,
+          "rows_read": 303144,
+          "elapsed_seconds": 481.2141432000003,
+          "throughput": 629.956546962936
+        },
+        {
+          "partition_id": 71,
+          "rows_read": 302956,
+          "elapsed_seconds": 500.23911150000004,
+          "throughput": 605.6223774497888
+        },
+        {
+          "partition_id": 72,
+          "rows_read": 302962,
+          "elapsed_seconds": 520.2764315999998,
+          "throughput": 582.3096753937222
+        },
+        {
+          "partition_id": 73,
+          "rows_read": 303046,
+          "elapsed_seconds": 482.9611337000001,
+          "throughput": 627.4749226264704
+        },
+        {
+          "partition_id": 74,
+          "rows_read": 302810,
+          "elapsed_seconds": 515.2753299000001,
+          "throughput": 587.6664036269049
+        },
+        {
+          "partition_id": 75,
+          "rows_read": 302972,
+          "elapsed_seconds": 467.7517044999995,
+          "throughput": 647.7197134404036
+        },
+        {
+          "partition_id": 76,
+          "rows_read": 303014,
+          "elapsed_seconds": 513.7204528000002,
+          "throughput": 589.8421959811834
+        },
+        {
+          "partition_id": 77,
+          "rows_read": 303216,
+          "elapsed_seconds": 491.8754178999998,
+          "throughput": 616.4487774049425
+        },
+        {
+          "partition_id": 78,
+          "rows_read": 302887,
+          "elapsed_seconds": 512.5454777999998,
+          "throughput": 590.9465854621966
+        },
+        {
+          "partition_id": 79,
+          "rows_read": 302966,
+          "elapsed_seconds": 489.9567578999995,
+          "throughput": 618.3525282895181
+        },
+        {
+          "partition_id": 80,
+          "rows_read": 303031,
+          "elapsed_seconds": 520.8969515000003,
+          "throughput": 581.7484612405143
+        },
+        {
+          "partition_id": 81,
+          "rows_read": 302963,
+          "elapsed_seconds": 483.13961910000035,
+          "throughput": 627.07132270453
+        },
+        {
+          "partition_id": 82,
+          "rows_read": 303156,
+          "elapsed_seconds": 517.6085675999998,
+          "throughput": 585.6858231803351
+        },
+        {
+          "partition_id": 83,
+          "rows_read": 303135,
+          "elapsed_seconds": 465.0375233,
+          "throughput": 651.8506245450753
+        },
+        {
+          "partition_id": 84,
+          "rows_read": 303025,
+          "elapsed_seconds": 498.0285521000005,
+          "throughput": 608.4490512085234
+        },
+        {
+          "partition_id": 85,
+          "rows_read": 303001,
+          "elapsed_seconds": 473.6435710000005,
+          "throughput": 639.7236625850869
+        },
+        {
+          "partition_id": 86,
+          "rows_read": 303138,
+          "elapsed_seconds": 497.0147278000004,
+          "throughput": 609.9175397514241
+        },
+        {
+          "partition_id": 87,
+          "rows_read": 303078,
+          "elapsed_seconds": 479.80431260000023,
+          "throughput": 631.6700205499567
+        },
+        {
+          "partition_id": 88,
+          "rows_read": 303106,
+          "elapsed_seconds": 497.56708269999945,
+          "throughput": 609.1761503900634
+        },
+        {
+          "partition_id": 89,
+          "rows_read": 302868,
+          "elapsed_seconds": 525.0472725999998,
+          "throughput": 576.8394881859255
+        },
+        {
+          "partition_id": 90,
+          "rows_read": 303152,
+          "elapsed_seconds": 493.22524319999957,
+          "throughput": 614.6319641573452
+        },
+        {
+          "partition_id": 91,
+          "rows_read": 303045,
+          "elapsed_seconds": 479.04988289999983,
+          "throughput": 632.5959170795992
+        },
+        {
+          "partition_id": 92,
+          "rows_read": 303197,
+          "elapsed_seconds": 491.6352744000005,
+          "throughput": 616.7112406041784
+        },
+        {
+          "partition_id": 93,
+          "rows_read": 302927,
+          "elapsed_seconds": 507.0734787000001,
+          "throughput": 597.4025712735425
+        },
+        {
+          "partition_id": 94,
+          "rows_read": 303040,
+          "elapsed_seconds": 484.34649759999957,
+          "throughput": 625.6677843271356
+        },
+        {
+          "partition_id": 95,
+          "rows_read": 302838,
+          "elapsed_seconds": 471.8317362000007,
+          "throughput": 641.8347405771633
+        },
+        {
+          "partition_id": 96,
+          "rows_read": 303336,
+          "elapsed_seconds": 327.9090524000003,
+          "throughput": 925.0613783909057
+        },
+        {
+          "partition_id": 97,
+          "rows_read": 303175,
+          "elapsed_seconds": 330.1081772999996,
+          "throughput": 918.4110568835653
+        },
+        {
+          "partition_id": 98,
+          "rows_read": 251791,
+          "elapsed_seconds": 268.50152660000003,
+          "throughput": 937.7637557163891
+        }
+      ]
+    },
+    {
+      "recorded_at": "2026-08-25T23:32:48.585438+00:00",
+      "run_id": "e749e7cd-8801-4aaf-accc-9147088e75b5",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 33340,
+      "quarantine_count": 17729,
+      "elapsed_seconds": 48.023641,
+      "throughput": 2082.3077,
+      "batch_size": 20000,
+      "batch_count": 5,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_PAYMENT_METHOD": 1202,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 822,
+      "unchanged_count": 81449,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 33340,
+        "run_quarantine_count": 17729,
+        "final_count": 100000,
+        "difference": 0
+      }
+    },
+    {
+      "recorded_at": "2026-08-25T23:43:47.173393+00:00",
+      "run_id": "4f275dca-3e83-44d5-875b-1641e06ec3f7",
+      "file_name": "orders_small_sample.csv",
+      "file_size_mb": 41.7652,
+      "engine_used": "python_batch",
+      "rows_read": 100000,
+      "raw_loaded": 100000,
+      "valid_count": 48931,
+      "corrected_count": 33340,
+      "quarantine_count": 17729,
+      "elapsed_seconds": 32.649227,
+      "throughput": 3062.8597,
+      "batch_size": 20000,
+      "batch_count": 5,
+      "partitions": null,
+      "error_case_counts": {
+        "NEGATIVE_QTY:item[0]": 674,
+        "CORRUPTED_ITEMS_JSON": 1338,
+        "INVALID_DATE_FORMAT": 2999,
+        "UNKNOWN_PRICE:item[0]": 1768,
+        "INVALID_PAYMENT_AMOUNT": 2283,
+        "INVALID_DELIVERY_COST": 1636,
+        "DUPLICATE_ORDER_ID": 672,
+        "MISSING_CUSTOMER_ID": 737,
+        "INVALID_PAYMENT_METHOD": 1202,
+        "INVALID_CURRENCY": 713,
+        "AMBIGUOUS_NEGATIVE_VALUE": 677,
+        "MISSING_ORDER_ID": 721,
+        "INVALID_PHONE": 707,
+        "MISSING_ITEM_FIELD": 740,
+        "INVALID_STATUS": 718,
+        "EMPTY_ITEMS": 677,
+        "TOTAL_AMOUNT_MISMATCH": 677,
+        "INVALID_EMAIL": 669,
+        "INVALID_ITEM_TOTAL:item[0]": 683,
+        "INVALID_ITEM_TOTAL": 683
+      },
+      "inserted_count": 0,
+      "updated_count": 0,
+      "unchanged_count": 82271,
+      "consistency": {
+        "consistent": true,
+        "run_raw_count": 100000,
+        "run_valid_count": 48931,
+        "run_corrected_count": 33340,
+        "run_quarantine_count": 17729,
+        "final_count": 100000,
+        "difference": 0
+      }
+    }
+  ]
+}
