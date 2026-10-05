@@ -1,5 +1,10 @@
 # Hybrid Data Pipeline for Dirty CSV Processing
+تم تعديل الكود بمايناسب العينة التي تم ارسالها لنا عية  ال20000 سجل 
+ولم استطع تشغيل البرنامج على الملف ذو ال30مليون سجل بعد عملية التعديل وذلك بسبب ظيق الوقت وقد قمت بعملية التشغيل على  ملف ال100 الف سجل وذلك للتحقق 
 
+وايضا كل ما يخص المتطلبات السابقة فهي موثقة 
+
+نرجو منكم التفهم 
 ## Overview
 
 This project implements a Hybrid Data Pipeline for processing a large dirty CSV dataset using:

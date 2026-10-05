@@ -38,7 +38,7 @@ SMALL_FILE_THRESHOLD_MB = int(
 BATCH_SIZE = int(
     os.getenv(
         "BATCH_SIZE",
-        "20000",
+        "5000",
     )
 )
 

@@ -3,26 +3,12 @@ Safe correction rules.
 
 This module applies only clear and deterministic corrections.
 
-The 10 required correction rules are:
-
-1. Arabic Digits -> Latin Digits
-2. Currency normalization -> YER
-3. Remove thousand separators
-4. Convert known word prices
-5. Normalize phone when format is clear
-6. Fix obvious email errors only
-7. Normalize date to YYYY-MM-DD when unambiguous
-8. Trim whitespace
-9. Normalize known synonyms
-10. Recalculate total_amount when components are valid
-
-Unsafe or ambiguous values are not invented.
-They remain invalid and will later be quarantined.
+The correction output is designed to be compatible with quality_rules.py.
+Every corrected record must be re-validated by the Quality stage.
 """
 
 import json
 import re
-
 from copy import deepcopy
 from datetime import datetime
 
@@ -39,9 +25,6 @@ ARABIC_DIGITS = str.maketrans(
 
 # ============================================================
 # KNOWN WORD PRICES
-#
-# Only deterministic values are included.
-# Unknown written prices are not guessed.
 # ============================================================
 
 WORD_PRICE_MAP = {
@@ -65,34 +48,39 @@ WORD_PRICE_MAP = {
 
 # ============================================================
 # SYNONYM MAPS
+# Compatible with quality_rules.py allowed values
 # ============================================================
 
 SYNONYM_MAPS = {
+
     "status": {
         "تم التأكيد": "مؤكد",
         "مؤكدة": "مؤكد",
         "انتظار": "قيد الانتظار",
         "قيد الإنتظار": "قيد الانتظار",
         "تم الإلغاء": "ملغي",
-        "منتهي": "مكتمل",
+
+        # Quality allows "تم التسليم", not "مكتمل"
+        "منتهي": "تم التسليم",
     },
 
     "payment_method": {
-    "كاش": "نقدي",
-    "نقد": "نقدي",
 
-    # القيمة الموجودة فعليًا في ملف البيانات
-    "نقدًا عند التسليم": "نقدي",
-    "نقداً عند التسليم": "نقدي",
-    "نقد عند التسليم": "نقدي",
+        # Quality allows "نقدًا عند التسليم"
+        "كاش": "نقدًا عند التسليم",
+        "نقد": "نقدًا عند التسليم",
+        "نقدي": "نقدًا عند التسليم",
+        "نقدًا عند التسليم": "نقدًا عند التسليم",
+        "نقداً عند التسليم": "نقدًا عند التسليم",
+        "نقد عند التسليم": "نقدًا عند التسليم",
 
-    "محفظة": "محفظة إلكترونية",
-    "محفظه إلكترونية": "محفظة إلكترونية",
+        "محفظة": "محفظة إلكترونية",
+        "محفظه إلكترونية": "محفظة إلكترونية",
 
-    "تحويل": "تحويل بنكي",
+        "تحويل": "تحويل بنكي",
 
-    "فيزا": "بطاقة",
-},
+        "فيزا": "بطاقة",
+    },
 
     "payment_status": {
         "مدفوع": "تم الدفع",
@@ -124,7 +112,9 @@ def add_correction(
     corrected_value,
     rule_code
 ):
-    """Add a correction only when the value actually changed."""
+    """
+    Add a correction only when the value actually changed.
+    """
 
     if original_value != corrected_value:
 
@@ -146,7 +136,9 @@ def correct_arabic_digits(
     field,
     corrections
 ):
-    """Convert Arabic digits to Latin digits."""
+    """
+    Convert Arabic digits to Latin digits.
+    """
 
     if not isinstance(value, str):
         return value
@@ -176,7 +168,9 @@ def correct_trim(
     field,
     corrections
 ):
-    """Remove leading and trailing whitespace."""
+    """
+    Remove leading and trailing whitespace.
+    """
 
     if not isinstance(value, str):
         return value
@@ -204,7 +198,9 @@ def correct_currency(
     field,
     corrections
 ):
-    """Normalize clear Yemeni Rial representations to YER."""
+    """
+    Normalize clear Yemeni Rial representations to YER.
+    """
 
     if not isinstance(value, str):
         return value
@@ -250,8 +246,6 @@ def correct_thousand_separators(
 ):
     """
     Remove clear thousand separators.
-
-    Only commas and Arabic thousands separator are removed.
     """
 
     if not isinstance(value, str):
@@ -286,8 +280,6 @@ def correct_word_price(
 ):
     """
     Convert only explicitly known written prices.
-
-    Unknown text is not guessed.
     """
 
     if not isinstance(value, str):
@@ -326,10 +318,20 @@ def correct_phone(
     corrections
 ):
     """
-    Normalize phone only when the result is clearly numeric.
+    Quality requires exactly:
 
-    Allowed input separators:
-    spaces, hyphens, parentheses.
+        7XXXXXXXX
+
+    Supported deterministic forms:
+
+        7XXXXXXXX
+        +9677XXXXXXXX
+        9677XXXXXXXX
+
+    Separators such as spaces, hyphens and parentheses
+    are removed first.
+
+    No digits are invented.
     """
 
     if not isinstance(value, str):
@@ -337,41 +339,66 @@ def correct_phone(
 
     original = value
 
-    corrected = re.sub(
-        r"[\s\-\(\)]+",
+    value = value.translate(
+        ARABIC_DIGITS
+    ).strip()
+
+    cleaned = re.sub(
+        r"[\s\-\(\)]",
         "",
         value
     )
 
-    # Keep + only at the beginning.
-    if corrected.startswith("+"):
-        numeric_part = corrected[1:]
-
-        if numeric_part.isdigit():
-            final_value = "+" + numeric_part
-        else:
-            return value
-
-    elif corrected.isdigit():
-        final_value = corrected
-
-    else:
+    # Already valid according to Quality
+    if re.fullmatch(
+        r"7\d{8}",
+        cleaned
+    ):
         return value
 
-    if len(
-        final_value.lstrip("+")
-    ) < 7:
+    digits = None
+
+    # +9677XXXXXXXX
+    if (
+        cleaned.startswith("+967")
+        and cleaned[4:].isdigit()
+    ):
+        digits = cleaned[4:]
+
+    # 9677XXXXXXXX
+    elif (
+        cleaned.startswith("967")
+        and cleaned[3:].isdigit()
+    ):
+        digits = cleaned[3:]
+
+    # Local format
+    elif (
+        cleaned.isdigit()
+        and len(cleaned) == 9
+    ):
+        digits = cleaned
+
+    # Never invent or guess a phone number
+    if digits is None:
+        return value
+
+    # Final result MUST satisfy Quality exactly
+    if not re.fullmatch(
+        r"7\d{8}",
+        digits
+    ):
         return value
 
     add_correction(
         corrections,
         field,
         original,
-        final_value,
+        digits,
         "NORMALIZE_PHONE"
     )
 
-    return final_value
+    return digits
 
 
 # ============================================================
@@ -385,13 +412,14 @@ def correct_email(
     corrections
 ):
     """
-    Fix only obvious repeated symbols.
+    Fix only obvious repeated-symbol errors.
 
     Examples:
-    user@@mail.com -> user@mail.com
-    user@mail..com -> user@mail.com
 
-    If still invalid, it remains invalid.
+        user@@mail.com
+        user@mail..com
+
+    No username/domain is invented.
     """
 
     if not isinstance(value, str):
@@ -413,6 +441,17 @@ def correct_email(
         corrected
     )
 
+    # Same basic format expected by Quality
+    valid_pattern = (
+        r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
+    )
+
+    if not re.fullmatch(
+        valid_pattern,
+        corrected
+    ):
+        return value
+
     add_correction(
         corrections,
         field,
@@ -426,7 +465,7 @@ def correct_email(
 
 # ============================================================
 # RULE 7
-# DATE -> YYYY-MM-DD
+# DATE NORMALIZATION
 # ============================================================
 
 def correct_date(
@@ -435,9 +474,18 @@ def correct_date(
     corrections
 ):
     """
-    Normalize only unambiguous supported date formats.
+    Quality valid format:
 
-    Ambiguous dates are not guessed.
+        YYYY-MM-DDTHH:MM:SS
+
+    Quality correctable formats:
+
+        YYYY/MM/DD
+        DD/MM/YYYY
+        DD-MM-YYYY
+
+    Date-only values are deterministically assigned
+    midnight (00:00:00).
     """
 
     if not isinstance(value, str):
@@ -447,15 +495,26 @@ def correct_date(
 
     text = value.strip()
 
-    supported_formats = [
-        "%Y-%m-%d",
+    # Already valid
+    try:
+
+        datetime.strptime(
+            text,
+            "%Y-%m-%dT%H:%M:%S"
+        )
+
+        return value
+
+    except ValueError:
+        pass
+
+    correctable_formats = [
         "%Y/%m/%d",
-        "%Y.%m.%d",
-        "%Y-%m-%dT%H:%M:%S",
-        "%Y-%m-%d %H:%M:%S",
+        "%d/%m/%Y",
+        "%d-%m-%Y",
     ]
 
-    for date_format in supported_formats:
+    for date_format in correctable_formats:
 
         try:
 
@@ -465,7 +524,7 @@ def correct_date(
             )
 
             corrected = parsed.strftime(
-                "%Y-%m-%d"
+                "%Y-%m-%dT00:00:00"
             )
 
             add_correction(
@@ -479,8 +538,10 @@ def correct_date(
             return corrected
 
         except ValueError:
+
             continue
 
+    # Unknown / impossible date remains unchanged
     return value
 
 
@@ -494,7 +555,9 @@ def correct_synonym(
     field,
     corrections
 ):
-    """Normalize only explicitly known synonyms."""
+    """
+    Normalize only explicitly known synonyms.
+    """
 
     if not isinstance(value, str):
         return value
@@ -504,7 +567,9 @@ def correct_synonym(
 
     normalized = value.strip().lower()
 
-    synonym_map = SYNONYM_MAPS[field]
+    synonym_map = SYNONYM_MAPS[
+        field
+    ]
 
     if normalized not in synonym_map:
         return value
@@ -530,14 +595,17 @@ def correct_synonym(
 
 def safe_number(value):
     """
-    Convert a value to float.
+    Convert a value to float safely.
 
-    Returns None when conversion is not safe.
+    Arabic digits and thousand separators
+    are handled here.
     """
 
     try:
+
         return float(
             str(value)
+            .translate(ARABIC_DIGITS)
             .replace(",", "")
             .replace("٬", "")
             .strip()
@@ -547,7 +615,30 @@ def safe_number(value):
         TypeError,
         ValueError
     ):
+
         return None
+
+
+def numeric_value(value):
+    """
+    Convert safe numeric values to actual
+    int/float values.
+
+    This is especially important for qty because
+    Quality treats numeric strings as INVALID_QTY.
+    """
+
+    number = safe_number(
+        value
+    )
+
+    if number is None:
+        return None
+
+    if number.is_integer():
+        return int(number)
+
+    return number
 
 
 def format_number(value):
@@ -556,38 +647,42 @@ def format_number(value):
     """
 
     if float(value).is_integer():
-        return str(int(value))
+        return str(
+            int(value)
+        )
 
     return str(value)
 
 
 # ============================================================
-# RULE 10
-# RECALCULATE TOTAL AMOUNT
+# ITEMS JSON CORRECTION
 # ============================================================
 
-def correct_total_amount(
+def correct_items_json(
     record,
     corrections
 ):
     """
-    Recalculate total_amount only when:
+    Normalize item numeric fields.
 
-    - items_json is valid JSON
-    - items_json is a non-empty list
-    - every item total is numeric
-    - delivery_cost is numeric
+    Important:
+
+        "2" -> 2
+
+    for qty, because Quality considers
+    numeric qty strings invalid.
+
+    Negative values are NOT corrected.
     """
 
     items_json = record.get(
         "items_json"
     )
 
-    delivery_cost = safe_number(
-        record.get("delivery_cost")
-    )
-
-    if delivery_cost is None:
+    if not isinstance(
+        items_json,
+        str
+    ):
         return
 
     try:
@@ -600,6 +695,143 @@ def correct_total_amount(
         TypeError,
         json.JSONDecodeError
     ):
+
+        return
+
+    if (
+        not isinstance(items, list)
+        or not items
+    ):
+        return
+
+    original_json = items_json
+
+    changed = False
+
+    for item in items:
+
+        if not isinstance(
+            item,
+            dict
+        ):
+            continue
+
+        for field in (
+            "qty",
+            "unit_price",
+            "total"
+        ):
+
+            if field not in item:
+                continue
+
+            value = item[field]
+
+            if not isinstance(
+                value,
+                str
+            ):
+                continue
+
+            translated = (
+                value
+                .translate(
+                    ARABIC_DIGITS
+                )
+                .replace(",", "")
+                .replace("٬", "")
+                .strip()
+            )
+
+            number = numeric_value(
+                translated
+            )
+
+            # Unknown text is not guessed
+            if number is None:
+                continue
+
+            # Never turn a negative value into a valid one
+            if number < 0:
+                continue
+
+            # qty must be positive
+            if (
+                field == "qty"
+                and number <= 0
+            ):
+                continue
+
+            if value != number:
+
+                item[field] = number
+
+                changed = True
+
+    if changed:
+
+        corrected_json = json.dumps(
+            items,
+            ensure_ascii=False
+        )
+
+        record["items_json"] = (
+            corrected_json
+        )
+
+        add_correction(
+            corrections,
+            "items_json",
+            original_json,
+            corrected_json,
+            "NORMALIZE_ITEMS_NUMERIC_VALUES"
+        )
+
+
+# ============================================================
+# RULE 10
+# RECALCULATE TOTAL AMOUNT
+# ============================================================
+
+def correct_total_amount(
+    record,
+    corrections
+):
+    """
+    Recalculate:
+
+        sum(item.total) + delivery_cost
+
+    only when all components are safe.
+    """
+
+    items_json = record.get(
+        "items_json"
+    )
+
+    delivery_cost = safe_number(
+        record.get(
+            "delivery_cost"
+        )
+    )
+
+    if (
+        delivery_cost is None
+        or delivery_cost < 0
+    ):
+        return
+
+    try:
+
+        items = json.loads(
+            items_json
+        )
+
+    except (
+        TypeError,
+        json.JSONDecodeError
+    ):
+
         return
 
     if (
@@ -612,14 +844,20 @@ def correct_total_amount(
 
     for item in items:
 
-        if not isinstance(item, dict):
+        if not isinstance(
+            item,
+            dict
+        ):
             return
 
         item_total = safe_number(
             item.get("total")
         )
 
-        if item_total is None:
+        if (
+            item_total is None
+            or item_total < 0
+        ):
             return
 
         items_total += item_total
@@ -647,104 +885,8 @@ def correct_total_amount(
             "RECALCULATE_TOTAL_AMOUNT"
         )
 
-        record["total_amount"] = corrected
-
-
-# ============================================================
-# ITEMS JSON CORRECTIONS
-# ============================================================
-
-def correct_items_json(
-    record,
-    corrections
-):
-    """
-    Apply safe digit and numeric formatting corrections
-    inside items_json.
-
-    This is necessary because item values are stored as JSON.
-    """
-
-    items_json = record.get(
-        "items_json"
-    )
-
-    if not isinstance(
-        items_json,
-        str
-    ):
-        return
-
-    try:
-
-        items = json.loads(
-            items_json
-        )
-
-    except (
-        TypeError,
-        json.JSONDecodeError
-    ):
-        return
-
-    if not isinstance(items, list):
-        return
-
-    original_json = items_json
-
-    changed = False
-
-    for item in items:
-
-        if not isinstance(item, dict):
-            continue
-
-        for field in [
-            "qty",
-            "unit_price",
-            "total"
-        ]:
-
-            if field not in item:
-                continue
-
-            value = item[field]
-
-            if isinstance(value, str):
-
-                corrected = value.translate(
-                    ARABIC_DIGITS
-                )
-
-                corrected = (
-                    corrected
-                    .replace(",", "")
-                    .replace("٬", "")
-                    .strip()
-                )
-
-                if corrected != value:
-
-                    item[field] = corrected
-                    changed = True
-
-    if changed:
-
-        corrected_json = json.dumps(
-            items,
-            ensure_ascii=False
-        )
-
-        record["items_json"] = (
-            corrected_json
-        )
-
-        add_correction(
-            corrections,
-            "items_json",
-            original_json,
-            corrected_json,
-            "NORMALIZE_ITEMS_NUMERIC_VALUES"
+        record["total_amount"] = (
+            corrected
         )
 
 
@@ -752,14 +894,16 @@ def correct_items_json(
 # MAIN FUNCTION
 # ============================================================
 
-def apply_corrections(raw_record):
+def apply_corrections(
+    raw_record
+):
     """
-    Apply the 10 safe correction rules.
+    Apply safe corrections.
 
-    Important:
-    - The original raw_record is never modified.
-    - Only deterministic corrections are applied.
-    - Ambiguous values are left unchanged.
+    The raw record is never modified.
+
+    The returned record MUST be passed again
+    through Quality validation.
     """
 
     record = deepcopy(
@@ -769,7 +913,8 @@ def apply_corrections(raw_record):
     corrections = []
 
     # ========================================================
-    # 1. ARABIC DIGITS
+    # RULE 1
+    # ARABIC DIGITS
     # ========================================================
 
     arabic_digit_fields = [
@@ -794,10 +939,13 @@ def apply_corrections(raw_record):
             )
 
     # ========================================================
-    # 8. TRIM WHITESPACE
+    # RULE 8
+    # TRIM
     # ========================================================
 
-    for field in list(record.keys()):
+    for field in list(
+        record.keys()
+    ):
 
         if isinstance(
             record[field],
@@ -813,7 +961,8 @@ def apply_corrections(raw_record):
             )
 
     # ========================================================
-    # 2. CURRENCY
+    # RULE 2
+    # CURRENCY
     # ========================================================
 
     if "currency" in record:
@@ -827,7 +976,8 @@ def apply_corrections(raw_record):
         )
 
     # ========================================================
-    # 3. THOUSAND SEPARATORS
+    # RULE 3
+    # THOUSAND SEPARATORS
     # ========================================================
 
     numeric_fields = [
@@ -849,7 +999,8 @@ def apply_corrections(raw_record):
             )
 
     # ========================================================
-    # 4. KNOWN WORD PRICES
+    # RULE 4
+    # KNOWN WORD PRICES
     # ========================================================
 
     for field in numeric_fields:
@@ -865,7 +1016,7 @@ def apply_corrections(raw_record):
             )
 
     # ========================================================
-    # ITEMS JSON SAFE NUMERIC CORRECTION
+    # ITEMS JSON
     # ========================================================
 
     correct_items_json(
@@ -874,7 +1025,8 @@ def apply_corrections(raw_record):
     )
 
     # ========================================================
-    # 5. PHONE
+    # RULE 5
+    # PHONE
     # ========================================================
 
     if "customer_phone" in record:
@@ -888,7 +1040,8 @@ def apply_corrections(raw_record):
         )
 
     # ========================================================
-    # 6. EMAIL
+    # RULE 6
+    # EMAIL
     # ========================================================
 
     if "customer_email" in record:
@@ -902,7 +1055,8 @@ def apply_corrections(raw_record):
         )
 
     # ========================================================
-    # 7. DATE
+    # RULE 7
+    # DATE
     # ========================================================
 
     if "order_date" in record:
@@ -916,7 +1070,8 @@ def apply_corrections(raw_record):
         )
 
     # ========================================================
-    # 9. SYNONYMS
+    # RULE 9
+    # SYNONYMS
     # ========================================================
 
     synonym_fields = [
@@ -939,7 +1094,8 @@ def apply_corrections(raw_record):
             )
 
     # ========================================================
-    # 10. RECALCULATE TOTAL
+    # RULE 10
+    # RECALCULATE TOTAL
     # ========================================================
 
     correct_total_amount(
@@ -954,61 +1110,5 @@ def apply_corrections(raw_record):
 
 
 # ============================================================
-# MANUAL TEST
+# END
 # ============================================================
-
-if __name__ == "__main__":
-
-    test_record = {
-        "order_id": " طلب-١٢٣ ",
-        "order_date": "2025/01/31",
-        "status": "تم التأكيد",
-        "customer_id": " عميل-١ ",
-        "customer_name": " محمد ",
-        "customer_phone": "+967 77 123 4567",
-        "customer_email": "user@@mail..com",
-        "city": " تعز ",
-        "district": " القاهرة ",
-        "delivery_type": "express",
-        "delivery_cost": "٥,٠٠٠",
-        "payment_method": "كاش",
-        "payment_status": "مدفوع",
-        "payment_amount": "125,000",
-        "currency": " ريال يمني ",
-        "total_amount": "999",
-        "items_json": (
-            '[{"sku":"SKU-1",'
-            '"name":"منتج",'
-            '"qty":"١",'
-            '"unit_price":"١٢٠,٠٠٠",'
-            '"total":"120000"}]'
-        )
-    }
-
-    result = apply_corrections(
-        test_record
-    )
-
-    print(
-        "\n========== CORRECTION TEST ==========\n"
-    )
-
-    print("Corrected record:")
-
-    for key, value in result[
-        "corrected_record"
-    ].items():
-
-        print(f"{key}: {value}")
-
-    print("\nCorrections:")
-
-    for correction in result[
-        "corrections"
-    ]:
-
-        print(correction)
-
-    print(
-        "\n=====================================\n"
-    )

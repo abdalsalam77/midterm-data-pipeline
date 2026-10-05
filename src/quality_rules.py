@@ -32,12 +32,14 @@ ALLOWED_STATUSES = {
     "مرتجع",
 }
 
+
 ALLOWED_PAYMENT_METHODS = {
-    "نقدي",
+    "نقدًا عند التسليم",
     "محفظة إلكترونية",
     "تحويل بنكي",
     "بطاقة",
 }
+
 
 ALLOWED_PAYMENT_STATUSES = {
     "تم الدفع",
@@ -47,10 +49,12 @@ ALLOWED_PAYMENT_STATUSES = {
     "ملغى",
 }
 
+
 ALLOWED_DELIVERY_TYPES = {
     "عادي",
     "سريع",
 }
+
 
 STANDARD_CURRENCY = "YER"
 
@@ -107,6 +111,7 @@ def contains_extra_whitespace(value):
         return False
 
     text = str(value)
+
     return text != text.strip()
 
 
@@ -116,6 +121,7 @@ def is_valid_email(email):
 
     Obvious corrections are handled later.
     """
+
     if is_empty(email):
         return False
 
@@ -130,24 +136,20 @@ def is_valid_email(email):
 def is_valid_phone(phone):
     """
     Basic phone validation.
+
+    Expected format:
+    7XXXXXXXX
     """
 
     if is_empty(phone):
         return False
 
-    cleaned = re.sub(
-        r"[\s\-()]",
-        "",
-        str(phone)
-    )
+    phone = str(phone).strip()
 
-    if cleaned.startswith("+"):
-        cleaned = cleaned[1:]
-
-    return (
-        cleaned.isdigit()
-        and len(cleaned) >= 7
-    )
+    return re.fullmatch(
+        r"7\d{8}",
+        phone
+    ) is not None
 
 
 def validate_date(value):
@@ -171,9 +173,7 @@ def validate_date(value):
     text = str(value).strip()
 
     valid_formats = [
-        "%Y-%m-%d",
-        "%Y-%m-%dT%H:%M:%S",
-        "%Y-%m-%d %H:%M:%S",
+        "%Y-%m-%dT%H:%M:%S"
     ]
 
     for date_format in valid_formats:
@@ -241,6 +241,7 @@ def to_number(value):
     Strict numeric conversion.
 
     This function intentionally does NOT:
+
     - convert Arabic digits
     - remove commas
     - perform cleaning
@@ -306,7 +307,9 @@ def validate_items_quality(items):
             total
         )
 
+        # ====================================================
         # QTY
+        # ====================================================
 
         if qty_number is None:
 
@@ -320,7 +323,28 @@ def validate_items_quality(items):
                 f"NEGATIVE_QTY:item[{index}]"
             )
 
+        # ----------------------------------------------------
+        # NUMERIC QTY STORED AS STRING
+        # ----------------------------------------------------
+        # Example:
+        #     "2" -> Correctable
+        #     2   -> Valid
+        #
+        # The value is numerically understandable,
+        # but its representation is inconsistent
+        # with the expected numeric type.
+        # Correction stage will normalize it.
+        # ----------------------------------------------------
+
+        elif isinstance(qty, str):
+
+            errors.append(
+                f"INVALID_QTY:item[{index}]"
+            )
+
+        # ====================================================
         # UNIT PRICE
+        # ====================================================
 
         if price_number is None:
 
@@ -334,7 +358,9 @@ def validate_items_quality(items):
                 f"NEGATIVE_UNIT_PRICE:item[{index}]"
             )
 
+        # ====================================================
         # ITEM TOTAL
+        # ====================================================
 
         if total_number is None:
 
@@ -448,6 +474,7 @@ def validate_data_quality(
     """
 
     error_codes = []
+
     error_details = []
 
     # ========================================================
@@ -742,7 +769,7 @@ def validate_data_quality(
 
     total_errors = validate_total_amount(
         record,
-        parsed_items,
+        parsed_items
     )
 
     for error in total_errors:
@@ -776,9 +803,11 @@ def validate_data_quality(
         "quality_valid": (
             len(unique_error_codes) == 0
         ),
+
         "error_codes": (
             unique_error_codes
         ),
+
         "error_details": (
             unique_error_details
         ),
@@ -798,6 +827,43 @@ def classify_quality_result(
     valid
     correctable
     quarantine
+
+    Rules:
+
+    1. No errors:
+       -> valid
+
+    2. If all actual errors are safely correctable:
+       -> correctable
+
+    3. If at least one error is unsafe:
+       -> quarantine
+
+    4. Unknown/unhandled errors:
+       -> quarantine
+
+    IMPORTANT:
+    Having multiple DIFFERENT errors does NOT automatically
+    make the record quarantine.
+
+    Example:
+
+        INVALID_PHONE
+        INVALID_EMAIL
+        INVALID_STATUS
+
+    All are correctable, therefore:
+
+        correctable
+
+    But:
+
+        INVALID_PHONE
+        MISSING_ORDER_ID
+
+    contains an unsafe error, therefore:
+
+        quarantine
     """
 
     error_codes = quality_result.get(
@@ -805,9 +871,28 @@ def classify_quality_result(
         []
     )
 
-    if not error_codes:
+    # ========================================================
+    # NO ERRORS
+    # ========================================================
 
+    if not error_codes:
         return "valid"
+
+    # ========================================================
+    # REMOVE ITEM/FIELD DETAILS
+    # ========================================================
+    #
+    # Example:
+    #
+    # INVALID_QTY:item[0]
+    #
+    # becomes:
+    #
+    # INVALID_QTY
+    #
+    # This allows the classification system to compare
+    # the actual error type against the allowed lists.
+    # ========================================================
 
     base_codes = []
 
@@ -821,7 +906,35 @@ def classify_quality_result(
             base_code
         )
 
-    # Any unsafe error wins.
+    # Remove duplicate error types
+    base_codes = list(
+        dict.fromkeys(
+            base_codes
+        )
+    )
+
+    # ========================================================
+    # IMPORTANT RULE:
+    #
+    # Multiple DIFFERENT correctable errors are still
+    # CORRECTABLE.
+    #
+    # We do NOT use:
+    #
+    #     len(base_codes) > 1
+    #
+    # as a reason for quarantine.
+    #
+    # We compare every error against the classification rules.
+    # ========================================================
+
+    # ========================================================
+    # STEP 1:
+    # Check for unsafe errors.
+    #
+    # If ANY error is a quarantine error, the whole record
+    # must remain in quarantine.
+    # ========================================================
 
     for error in base_codes:
 
@@ -829,14 +942,32 @@ def classify_quality_result(
 
             return "quarantine"
 
-    # Every remaining error must be known
-    # and safely correctable.
+    # ========================================================
+    # STEP 2:
+    # Every remaining error must be explicitly known and
+    # safely correctable.
+    #
+    # Therefore:
+    #
+    # INVALID_PHONE
+    # INVALID_EMAIL
+    # INVALID_STATUS
+    #
+    # => correctable
+    #
+    # Even though they are DIFFERENT errors.
+    # ========================================================
 
     for error in base_codes:
 
         if error not in CORRECTABLE_ERRORS:
 
             return "quarantine"
+
+    # ========================================================
+    # STEP 3:
+    # All errors are correctable.
+    # ========================================================
 
     return "correctable"
 
@@ -855,7 +986,7 @@ def run_quality_check(
 
     quality_result = validate_data_quality(
         record,
-        parsed_items,
+        parsed_items
     )
 
     classification = (
